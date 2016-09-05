@@ -17,18 +17,24 @@ footer
                 )
         .block
             h2.fa.fa-share {{ 'FOOTER_SHARE_TITLE' | translate }}
-            a(target="_blank", share="facebook", share-title="population.io") Facebook
+            a(target="_blank", share="facebook", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'Facebook')") Facebook
                 span.fa.fa-facebook-square
-            a(target="_blank", share="twitter", share-title="population.io") Twitter
+            a(target="_blank", share="twitter", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'Twitter')") Twitter
                 span.fa.fa-twitter-square
-            a(target="_blank", share="linkedin", share-title="population.io") LinkedIn
+            a(target="_blank", share="linkedin", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'LinkedIn')") LinkedIn
                 span.fa.fa-linkedin-square
-            a(target="_blank", share="qzone", share-title="population.io") qZone
+            a(target="_blank", share="qzone", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'qZone')") qZone
                 span.fa.fa-star
-            a(target="_blank", share="tencentWeibo", share-title="population.io") Tencent Weibo
+            a(target="_blank", share="tencentWeibo", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'Tencent Weibo')") Tencent Weibo
                 span.fa.fa-tencent-weibo
-            a(target="_blank", share="sinaWeibo", share-title="population.io") Sina Weibo
-                span.fa.fa-weibo                
+            a(target="_blank", share="sinaWeibo", share-title="population.io",
+            onClick="ga('send', 'event', 'FooterShare', 'click', 'Sina Weibo')") Sina Weibo
+                span.fa.fa-weibo
 
         .block.small
             h2 {{ 'FOOTER_MORE_TITLE' | translate }}

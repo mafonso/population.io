@@ -17,8 +17,14 @@ block content
 
         span {{ 'SHARE_TEXT' | translate }}
         .links
-            a.fa.fa-facebook-square(href="https://facebook.com/populationio")
-            a.fa.fa-twitter-square(href="https://twitter.com/populationio")
+            a.fa.fa-facebook-square(
+            href="https://facebook.com/populationio"
+            onClick="ga('send', 'event', 'CornerShare', 'click', 'Facebook')"
+            )
+            a.fa.fa-twitter-square(
+            href="https://twitter.com/populationio"
+            onClick="ga('send', 'event', 'CornerShare', 'click', 'Twitter')"
+            )
 
     ul.navigation(ng-show="profile.active")
         li(ng-class="{'active': currentPage == 0}", ng-click="showSection('home')") <span></span>
