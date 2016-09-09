@@ -28,6 +28,7 @@ angular.module('populationioApp', [
 	var userLanguage = window.navigator.userLanguage || window.navigator.language;
 	userLanguage = userLanguage.slice(0, 2);
 
+	LanguageService.skipLanguageEvent(userLanguage);
 	LanguageService.change(userLanguage);
 	$rootScope.currentPage = 0;
 });

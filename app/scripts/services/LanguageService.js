@@ -3,6 +3,7 @@ angular.module('populationioApp').factory('LanguageService', [
 	function($rootScope, $translate, tmhDynamicLocale){
 		'use strict';
 		var supportedLanguages = ['EN', 'ES', 'FR', 'DE', 'ZH', 'ID', 'RU'];
+		var languageEvents = {};
 		var getSupportedLanguage = function(language){
 			language = language.toUpperCase();
 			if (supportedLanguages.indexOf(language) > -1){
@@ -11,8 +12,18 @@ angular.module('populationioApp').factory('LanguageService', [
 
 			return 'EN';
 		};
+		var skipLanguageEvent = function(language){
+			languageEvents[language] = true;
+			languageEvents[language.toUpperCase()] = true;
+		};
 		return {
+			skipLanguageEvent: skipLanguageEvent,
 			change: function(language){
+				if (!languageEvents.hasOwnProperty(language)){
+					//noinspection JSUnresolvedFunction
+					ga('send', 'event', 'Language', 'change', language);
+					skipLanguageEvent(language);
+				}
 				language = getSupportedLanguage(language);
 				$translate.use(language).then(function(){
 					moment.locale(language.toLowerCase());
