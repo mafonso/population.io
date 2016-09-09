@@ -1,7 +1,8 @@
 footer
     .container
         .block
-            h2.icon.icon-mail {{ 'FOOTER_SIGNUP_TITLE' | translate }}
+            h2.icon.icon-mail
+                span {{ 'FOOTER_SIGNUP_TITLE' | translate }}
             p(compile-unsafe="'FOOTER_SIGNUP_TXT' | translate")
             form.form-inline(name="emailForm", novalidate)
                 input.form-control.input-dark(
@@ -16,7 +17,9 @@ footer
                 ng-disabled="emailForm.$invalid || sending"
                 )
         .block
-            h2.fa.fa-share {{ 'FOOTER_SHARE_TITLE' | translate }}
+            h2
+                i.fa.fa-share
+                span {{ 'FOOTER_SHARE_TITLE' | translate }}
             a(target="_blank", share="facebook", share-title="population.io") Facebook
                 span.fa.fa-facebook-square
             a(target="_blank", share="twitter", share-title="population.io") Twitter
@@ -28,10 +31,11 @@ footer
             a(target="_blank", share="tencentWeibo", share-title="population.io") Tencent Weibo
                 span.fa.fa-tencent-weibo
             a(target="_blank", share="sinaWeibo", share-title="population.io") Sina Weibo
-                span.fa.fa-weibo                
+                span.fa.fa-weibo
 
         .block.small
-            h2 {{ 'FOOTER_MORE_TITLE' | translate }}
+            h2
+                span {{ 'FOOTER_MORE_TITLE' | translate }}
             a(href="mailto:worldpopulationproject@gmail.com") {{ 'FOOTER_MORE_CONTACT' | translate }}
             a(href="http://api.population.io", target="_blank") {{ 'FOOTER_MORE_API' | translate }}
 .copyright

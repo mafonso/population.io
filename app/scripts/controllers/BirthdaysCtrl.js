@@ -96,6 +96,8 @@ angular.module('populationioApp').controller('BirthdaysCtrl', [
 					}
 				});
 				$scope.$root.loading -= 1;
+			}, function(){
+				$scope.$root.loading -= 1;
 			});
 		};
 		var update = function(){
