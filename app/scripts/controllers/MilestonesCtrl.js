@@ -43,10 +43,9 @@ angular.module('populationioApp').controller('MilestonesCtrl', [
 			}
 		});
 		var _getDateWithOffset = function(date, offset){
-			var year = parseInt($filter('date')(date, 'yyyy'), 0),
-				month = parseInt($filter('date')(date, 'M'), 0) - 1,
-				day = $filter('date')(date, 'dd');
-			return new Date(parseInt(year + offset, 0), month, day);
+			var updatedDate = moment(date, 'YYYY-MM-DD');
+			updatedDate.add(offset, 'years');
+			return updatedDate;
 		};
 		var _loadLifeExpectancyRemaining = function(country, onSuccess){
 			$scope.$root.loading += 1;
@@ -118,10 +117,12 @@ angular.module('populationioApp').controller('MilestonesCtrl', [
 			var milestoneNow = $translate.instant('MILESTONES_MILESTONE_NOW');
 			var milestoneBorn = $translate.instant('MILESTONES_MILESTONE_BORN');
 			var milestone18 = $translate.instant('MILESTONES_MILESTONE_18');
+			var birthday18 = _getDateWithOffset(ProfileService.getFormattedBirthday(), 18);
+			var now = moment();
 			return [
 				{
-					date: $filter('date')(Date.now(), 'yyyy-MM-dd'),
-					year: $filter('date')(Date.now(), 'yyyy'),
+					date: now.format('YYYY-MM-DD'),
+					year: now.year(),
 					title: milestoneNow,
 					titleType: 'MILESTONES_MILESTONE_NOW',
 					selected: true,
@@ -135,11 +136,8 @@ angular.module('populationioApp').controller('MilestonesCtrl', [
 					born: true
 				},
 				{
-					date: _getDateWithOffset(new Date(ProfileService.getFormattedBirthday()), 18),
-					year: $filter('date')(_getDateWithOffset(
-						new Date(ProfileService.getFormattedBirthday()),
-						18
-					), 'yyyy'),
+					date: birthday18.format('YYYY-MM-DD'),
+					year: birthday18.year(),
 					title: milestone18,
 					titleType: 'MILESTONES_MILESTONE_18'
 				}
@@ -154,10 +152,12 @@ angular.module('populationioApp').controller('MilestonesCtrl', [
 			item.selected = true;
 			$scope.selectedYear = item.year;
 			var selectedExactDate = item.date.split('-'); // 2020-07-28
-			var yearsOnSelectedMilestone = selectedExactDate[0] - ProfileService.birthday.year;
-			if(ProfileService.birthday.month > selectedExactDate[1]){
+			var yearsOnSelectedMilestone = parseInt(selectedExactDate[0], 10) - parseInt(ProfileService.birthday.year, 10);
+			var birthdayMonth = parseInt(ProfileService.birthday.month, 10);
+			var selectedMonth = parseInt(selectedExactDate[1], 10);
+			if(birthdayMonth > selectedMonth){
 				yearsOnSelectedMilestone -= 1;
-			} else if(ProfileService.birthday.month === selectedExactDate[1] && ProfileService.birthday.day > selectedExactDate[2]){
+			} else if(birthdayMonth === selectedMonth && parseInt(ProfileService.birthday.day, 10) > parseInt(selectedExactDate[2], 10)){
 				yearsOnSelectedMilestone -= 1;
 			}
 			$scope.age = yearsOnSelectedMilestone;
