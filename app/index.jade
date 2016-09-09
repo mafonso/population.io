@@ -13,7 +13,10 @@ block content
 
     .share.animate(ng-class="{'expanded': !expanded}", ng-cloak)
         .tedtalk
-            a(href="{{ 'SHARE_TED_TALK_URL' | translate }}") {{ 'SHARE_TED_TALK' | translate }}
+            a(
+            href="{{ 'SHARE_TED_TALK_URL' | translate }}"
+            onClick="ga('send', 'event', 'CornerShare', 'click', 'TED_Talk')"
+            ) {{ 'SHARE_TED_TALK' | translate }}
 
         span {{ 'SHARE_TEXT' | translate }}
         .links
