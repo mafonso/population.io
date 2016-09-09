@@ -9,7 +9,7 @@ angular.module('populationioApp').directive('rankGraph', [
 				age: '='
 			},
 			link: function($scope, element){
-				var width = 300,
+				var width = 350,
 					height = 200,
 					xAxis, xAxisElement,
 					yAxis, yAxisElement,
@@ -83,7 +83,7 @@ angular.module('populationioApp').directive('rankGraph', [
 						.attr({
 							'class': 'age',
 							transform: function(){
-								return 'translate(' + [width - 10, height + 3] + ')';
+								return 'translate(' + [width - 60, height + 3] + ')';
 							}
 						});
 					var ticks = [], step = $scope.country !== 'World' ? 500000 : 50000000;
@@ -110,7 +110,7 @@ angular.module('populationioApp').directive('rankGraph', [
 								return d.age;
 							})
 						])
-						.range([40, width - 50]);
+						.range([40, width - 100]);
 					var yScale = d3.scale.linear()
 							.domain([0, ticks[ticks.length - 1]])
 							.range([height, 90])
@@ -120,7 +120,7 @@ angular.module('populationioApp').directive('rankGraph', [
 						.tickFormat(function(d){
 							return d + 'y';
 						})
-						.tickValues([0, 25, 50, 75, 100, 125, 150]);
+						.tickValues([0, 25, 50, 75, 100]);
 					yAxis.scale(yScale)
 						.tickValues(ticks);
 					var area = d3.svg.area()
