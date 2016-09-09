@@ -18,7 +18,7 @@
                         yRange = d3.scale.linear().nice(),
                         line = d3.svg.line(),
                         area = d3.svg.area(),
-                        age,
+                        age = 0,
                         areaTotal, areaLine,
                         areaYounger,
                         xAxisElement, yAxisElement,
@@ -28,11 +28,11 @@
 
                       _initChart();
                       $scope.$watch('region', function (newVal) {
-                          if (newVal == 'World' && $scope.worldPopulationData) {
-                              _updateChart($scope.worldPopulationData)
+                          if (newVal === 'World' && $scope.worldPopulationData) {
+                              _updateChart($scope.worldPopulationData);
                           }
-                          else if (newVal != 'World' && $scope.countryPopulationData) {
-                              _updateChart($scope.countryPopulationData)
+                          else if (newVal !== 'World' && $scope.countryPopulationData) {
+                              _updateChart($scope.countryPopulationData);
                           }
                       });
 
@@ -316,15 +316,16 @@
                             .attr({
                                 transform: 'translate(' + [xRange(age), -40] + ')'
                             });
+                          var totalOfAge = data !== undefined && data[age] !== undefined ? data[age].total : 0;
                           pointer.select('line')
                             .transition()
                             .attr({
-                                y2: yRange(data[age].total) + 40
+                                y2: yRange(totalOfAge) + 40
                             });
                           pointer.select('circle')
                             .transition()
                             .attr({
-                                cy: yRange(data[age].total) + 40
+                                cy: yRange(totalOfAge) + 40
                             });
                           pointer.select('text')
                             .text(function () {

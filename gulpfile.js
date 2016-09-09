@@ -25,10 +25,6 @@ var hash = git.short(); // jshint ignore:line
 
 var fs = require('fs');
 var awspublish = require('gulp-awspublish');
-// var scripts = [
-// 		'bower_components/d3.slider/d3.slider.js', // ?
-// 	]
-// ;
 
 gulp.task('data', function(){
 	return gulp.src([
