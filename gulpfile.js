@@ -18,17 +18,13 @@ var jade = require('gulp-jade');
 var inject = require('gulp-inject');
 var stylus = require('gulp-stylus');
 var csso = require('gulp-csso');
-var nib = require('gulp-stylus/node_modules/nib');
+var nib = require('nib');
 
 var connect = require('gulp-connect');
 var hash = git.short(); // jshint ignore:line
 
 var fs = require('fs');
 var awspublish = require('gulp-awspublish');
-// var scripts = [
-// 		'bower_components/d3.slider/d3.slider.js', // ?
-// 	]
-// ;
 
 gulp.task('data', function(){
 	return gulp.src([
@@ -93,8 +89,6 @@ gulp.task('templates', function(){
 gulp.task('assets', function(){
 	gulp.src('assets/*')
 		.pipe(gulp.dest('dist/assets'));
-	gulp.src('assets/celebrities/**/*')
-		.pipe(gulp.dest('dist/celebrities'));
 });
 gulp.task('fonts', function(){
 	gulp.src(['fonts/**/*'])
