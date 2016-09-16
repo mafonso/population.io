@@ -60,6 +60,16 @@ angular.module('populationioApp').controller('SummaryCtrl', [
 		$scope.calcCountryYoungerPercentageSimple = function(){
 			return $filter('number')(Math.min(100, $scope.rankLocal / ($scope.countryPopulation / 100)), 0);
 		};
+		$scope.selectWorld = function(){
+			$scope.region = 'World';
+			//noinspection JSUnresolvedFunction
+			ga('send', 'event', 'SummaryChartType', 'World');
+		};
+		$scope.selectCountry = function(){
+			$scope.region = $scope.profile.country;
+			//noinspection JSUnresolvedFunction
+			ga('send', 'event', 'SummaryChartType', 'Country');
+		};
 		$scope.$on('profileUpdated', function(){
 			$scope.translatedCountry = $translate.instant(ProfileService.country);
 		});
