@@ -18,5 +18,17 @@ angular.module('populationioApp').controller('ExpectancyCtrl', [
 				$scope.referenceCountry = referenceCountry;
 			});
 		});
+		$scope.$watch('currentCountry', function(n){
+			if (n !== null && n !== undefined && n !== ''){
+				//noinspection JSUnresolvedFunction
+				ga('send', 'event', 'ExpectancyMap', 'local_country_change', n);
+			}
+		});
+		$scope.$watch('referenceCountry', function(n){
+			if (n !== null && n !== undefined && n !== ''){
+				//noinspection JSUnresolvedFunction
+				ga('send', 'event', 'ExpectancyMap', 'reference_country_change', n);
+			}
+		});
 	}
 ]);
