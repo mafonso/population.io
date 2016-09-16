@@ -93,6 +93,8 @@ angular.module('populationioApp').controller('ExpectancyMapComponentCtrl', [
 					$scope.reference = Countries.filter(function(item){
 						return item.GMI_CNTRY === d.properties.GMI_CNTRY;
 					})[0].POPIO_NAME;
+					//noinspection JSUnresolvedFunction
+					ga('send', 'event', 'ExpectancyMap', 'click', $scope.reference);
 				});
 		});
 
