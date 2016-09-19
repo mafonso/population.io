@@ -16,9 +16,21 @@ header
                 )
         ul.link-list
             li
-                a(ng-click="showAbout()" ng-bind="pageHeader.menuAbout") About
-                a(ng-click="showMethodology()" ng-bind="pageHeader.menuMethodology") Methodology
-                a(ng-click="showDevelopers()" ng-bind="pageHeader.menuApi") API
+                a(
+                ng-click="showAbout()"
+                ng-bind="pageHeader.menuAbout"
+                onClick="ga('send', 'event', 'Subpages', 'view', 'About')"
+                ) About
+                a(
+                ng-click="showMethodology()"
+                ng-bind="pageHeader.menuMethodology"
+                onClick="ga('send', 'event', 'Subpages', 'view', 'Methodology')"
+                ) Methodology
+                a(
+                ng-click="showDevelopers()"
+                ng-bind="pageHeader.menuApi"
+                onClick="ga('send', 'event', 'Subpages', 'view', 'API')"
+                ) API
 
         .profile.animate(
         ng-show="currentPage > 0"

@@ -36,6 +36,7 @@
     "ics": true,
     "_": true,
     "moment": true,
+    "ga": true,
     "bowser": true
   }
 }

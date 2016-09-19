@@ -153,6 +153,8 @@ angular.module('populationioApp').controller('MainCtrl', [
 			$document.scrollToElement(sectionElement, 80, 1000);
 		};
 		$scope.showHomepage = function(){
+			//noinspection JSUnresolvedFunction
+			ga('send', 'event', 'GoUpButton', 'click');
 			$scope.showSection('home');
 		};
 		$scope.registerMail = function(){
